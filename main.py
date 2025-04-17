@@ -1,9 +1,11 @@
+import os
 import openai
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, MessageHandler, filters
 
-openai.api_key ="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"
-TELEGRAM_TOKEN ="8181071639:AAHHUfI9dwUvVuve7wqd-E2SEJ6GBMlNly8"
+# Get values from environment variables
+openai.api_key = os.getenv("OPENAI_API_KEY")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_message = update.message.text
@@ -16,7 +18,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply = response['choices'][0]['message']['content']
     await update.message.reply_text(reply)
 
-app = ApplicationBuilder().token(8181071639:AAHHUfI9dwUvVuve7wqd-E2SEJ6GBMlNly8).build()
+app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
 print("Bot is running...")
