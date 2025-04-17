@@ -16,7 +16,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply = response['choices'][0]['message']['content']
     await update.message.reply_text(reply)
 
-app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
+app = ApplicationBuilder().token(8181071639:AAHHUfI9dwUvVuve7wqd-E2SEJ6GBMlNly8).build()
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
 print("Bot is running...")
